@@ -3,7 +3,14 @@ import Data.List.Split
 import qualified Data.Map.Strict as Map
 import Data.Maybe
 
-main = interact $ show . Map.size . Map.filter (>1) . insertPositions Map.empty . concatMap getPositions . map parseClaim . lines
+main = interact 
+    $ show 
+    . Map.size 
+    . Map.filter (>1) 
+    . insertPositions Map.empty 
+    . concatMap getPositions 
+    . map parseClaim 
+    . lines
 
 data Claim = Claim {
     indet :: Int,
