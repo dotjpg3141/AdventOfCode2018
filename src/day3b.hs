@@ -23,8 +23,6 @@ data Claim = Claim {
     h :: Int
 } deriving (Show, Ord, Eq)
 
-defaultClaim = Claim { indet = 0, x = 0, y = 0, w = 0, h = 0 }
-
 size :: Claim -> Int
 size c = w c * h c
 
