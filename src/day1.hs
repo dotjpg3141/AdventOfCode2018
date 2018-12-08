@@ -3,7 +3,7 @@ import qualified Data.Set as Set
 import Data.Maybe
 
 main :: IO ()
-main = solving strat1 strat2 id
+main = solving 1 strat1 strat2 id
 
 strat1 :: String -> Int
 strat1 = foldl1 (+) . map parseInt . words

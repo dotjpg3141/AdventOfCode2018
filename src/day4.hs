@@ -7,7 +7,7 @@ import qualified Data.Map.Strict as Map
 import AOC
 
 main :: IO ()
-main = solving strat1 strat2 parseInput
+main = solving 4 strat1 strat2 parseInput
 
 parseInput :: String -> [SleepInstance]
 parseInput = sleepInstances . parseRecords
