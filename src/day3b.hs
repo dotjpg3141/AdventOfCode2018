@@ -1,7 +1,5 @@
 module Day3b ( strat2 ) where
-
-import Data.Char
-import Data.List.Split
+import Day3Common
 import qualified Data.Map.Strict as Map
 import Data.Maybe
 
@@ -19,14 +17,6 @@ strat2
     . concatMap getPositions 
     . map parseClaim 
     . lines
-
-data Claim = Claim {
-    indet :: Int,
-    x :: Int,
-    y :: Int,
-    w :: Int,
-    h :: Int
-} deriving (Show, Ord, Eq)
 
 size :: Claim -> Int
 size c = w c * h c
@@ -48,17 +38,3 @@ insertPositions fabric = foldl insertPosition fabric
 
 insertPosition :: Fabric -> Position -> Fabric
 insertPosition fabric (coord, claim) = (Map.alter $ Just . mapSnd (+1) . fromMaybe (claim, 0)) coord fabric
-
-parseClaim :: String -> Claim
-parseClaim xs = case parseNumbers xs of
-    [ ident, x, y, w, h ]  -> Claim ident x y w h
-    _                      -> error $ "Invalid claim: " ++ show xs
-
-parseNumbers :: String -> [Int]
-parseNumbers = map read . split (dropDelims . dropBlanks . condense $ whenElt $ not . isDigit)
-
-mapFst :: (a -> c) -> (a, b) -> (c, b)
-mapFst f (x, y) = (f x, y)
-
-mapSnd :: (b -> c) -> (a, b) -> (a, c)
-mapSnd f (x, y) = (x, f y)
