@@ -1,11 +1,13 @@
+module Day3a ( strat1 ) where
+
 import Data.Char
 import Data.List.Split
 import qualified Data.Map.Strict as Map
 import Data.Maybe
 
-main = interact 
-    $ show 
-    . Map.size 
+strat1 :: String -> Int
+strat1 
+    = Map.size 
     . Map.filter (>1) 
     . insertPositions Map.empty 
     . concatMap getPositions 

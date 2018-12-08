@@ -1,7 +1,15 @@
+import AOC
 import qualified Data.Set as Set
+import Data.Maybe
 
 main :: IO ()
-main = interact $ show . firstDuplicate . scanl (+) 0 . cycle . map parseInt . words
+main = solving strat1 strat2 id
+
+strat1 :: String -> Int
+strat1 = foldl1 (+) . map parseInt . words
+
+strat2 :: String -> Int
+strat2 = fromJust . firstDuplicate . scanl (+) 0 . cycle . map parseInt . words
 
 parseInt :: String -> Int
 parseInt ('+':xs) = read xs

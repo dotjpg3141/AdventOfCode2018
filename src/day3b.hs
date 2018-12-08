@@ -1,10 +1,15 @@
+module Day3b ( strat2 ) where
+
 import Data.Char
 import Data.List.Split
 import qualified Data.Map.Strict as Map
 import Data.Maybe
 
-main = interact 
-    $ show
+strat2 :: String -> Int
+strat2
+    = indet
+    . fst
+    . head
     . filter (\(claim, count) -> size claim == count)
     . Map.assocs
     . Map.fromListWith (+)
