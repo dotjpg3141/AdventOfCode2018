@@ -21,7 +21,9 @@ strat1 instances = sleepiestGuard * sleepiestMinute
                         $ instances
 
 strat2 :: [SleepInstance] -> Int
-strat2 = const 0
+strat2 instances = sleepGuard inst * sleepMinute inst
+    where
+        inst = sleepiest id instances
                         
 data Record = Record {
         year   :: Int,
@@ -38,7 +40,7 @@ data GuardAction = BeginShift | FallAsleep | WakeUp deriving (Show, Ord, Eq)
 data SleepInstance = SleepInstance {
         sleepMinute :: Int,
         sleepGuard  :: Int
-    }
+    } deriving (Show, Ord, Eq)
 
 defaultRecord :: Record
 defaultRecord = Record 0 0 0 0 0 Nothing BeginShift
